@@ -1,0 +1,42 @@
+
+
+
+img{
+    width:  100vw;
+}
+
+
+
+
+/*   STICKY FOOTER              */
+html{
+    min-height: 100%;
+    position: relative
+}
+body{
+    margin-bottom: -30px;
+}
+
+footer{
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: dimgrey;
+    text-align: center;
+    color: #ddd;
+    padding-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
