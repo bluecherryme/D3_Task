@@ -17,6 +17,11 @@ body{
     margin-bottom: -30px;
 }
 
+svg{
+    overflow: visible !important
+}
+
+
 footer{
     height: 30px;
     position: absolute;
