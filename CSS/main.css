@@ -1,37 +1,48 @@
+body{
+    width: 100vw;
+    height: 100wh;
+    background-color: #2A3139;
+    color: #ddd;
+    font-family: 'Lato', sans-serif;
+}
+
+.container{
+    text-align: center;
+    height: 100vh;
+    padding-top: 50px;
+}
+
+h1{
+    font-size: 60px;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-group-vertical{
+    float: left;
+}
+
+.chart{
+    width: 800px;
+    height: 400px;
+    margin: 50px auto;
+}
+
+#chartTitle{
+    text-transform: capitalize;
+}
+
 svg{
     width: 100%;
     height: 100%;
     overflow: visible !important;
+    border: 1px solid #999;
 }
 
-
-
-
-/*   STICKY FOOTER              */
-html{
-    min-height: 100%;
-    position: relative
+.btn-secondary.focus, .btn-secondary:focus {
+    color: darkblue;
 }
-body{
-    margin-bottom: -30px;
-}
-
-footer{
-    height: 30px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: dimgrey;
-    text-align: center;
-    color: #ddd;
-    padding-top: 5px;
-}
-
-
-
-
-
-
 
 
 
