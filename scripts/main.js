@@ -7,17 +7,17 @@ $(document).ready(function(){
     
     state = {
         virality : ["virality_pimp_unique", "virality_pimp_viral_unique"],
-        posts : ["page_posts", "user_posts", "user_mentions", "post_likes", 
+        posts : ["page_posts", "user_posts", "user_mentions",  
                 "post_shares", "post_comments"],
         stories: ["people_talking", "stories"],
-        popularity: ["new_likes", "clicks"],
+        popularity: ["new_likes", "clicks", "post_likes",],
         reach: ["page_impressions", "reach"]
     }
 
     function changeState(activeView){
         $('#chartTitle').html(activeView);
         $("svg").empty();
-        makeChart(dataG, state[activeView], 'line');
+        makeChart(dataG, state[activeView]);
     }
 
     //initial view

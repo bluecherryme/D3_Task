@@ -29,7 +29,7 @@ h1{
     margin: 50px auto;
 }
 
-#chartTitle{
+#chartTitle, .legend{
     text-transform: capitalize;
 }
 
@@ -43,6 +43,7 @@ svg{
 .btn-secondary.focus, .btn-secondary:focus {
     color: darkblue;
 }
+
 
 
 
