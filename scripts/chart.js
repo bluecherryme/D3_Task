@@ -1,6 +1,5 @@
-// make array with all values to allow y-scale to be displayed correctly
+// make array with all values to allow y-scale to be calculated correctly
 function joinAllValues(dataG, dataType){
-    //dataType is an array of objects
     let allValues = [];
     dataType.map(type => {
         dataG.map(day => {
@@ -16,7 +15,7 @@ function beautifyDataType(type){
 
 var makeChart = (dataG, dataTypes) => {
     var width = 800,
-        height = 400,
+        height = 360,
         margin = {top: 50, bottom: 40, left: 70, right: 50},
         colors = ['blue','red','green','yellow','grey']
 
@@ -34,22 +33,23 @@ var makeChart = (dataG, dataTypes) => {
         .domain([0, yMax])
         .range([0, height - margin.top - margin.bottom]);
 
-        var svg = d3.select('svg');
+    var svg = d3.select('svg');
 
     // create x and y axis
     var xAxis = d3.axisBottom()
         .scale(xScale)
-        .tickFormat(d3.timeFormat('%d/%m/%y'));
+        .tickFormat(d3.timeFormat('%d/%m'));
     var yAxis = d3.axisLeft()
         .scale(yScale);
 
     svg.append('g')
         .attr('transform', 'translate(' + [10, height - margin.bottom] + ')')
+        .attr("class", "axisWhite")
         .attr('stroke','#999')
         .call(xAxis);
-
     svg.append('g')
         .attr('transform', 'translate(' + [margin.left, 0] + ')')
+        .attr("class", "axisWhite")        
         .attr('stroke','#999')        
         .call(yAxis);
         
