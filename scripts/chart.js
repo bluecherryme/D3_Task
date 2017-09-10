@@ -1,4 +1,11 @@
-var makeChart = (dataG, dataType, chartType) => {
+//make array with all values to allow y-scale to be displayed correctly
+// function joinAllValues(dataG, dataType){
+//     //dataType is an array of objects
+//     let allValues = [];
+    
+// }
+
+var makeChart = (dataG, dataTypes, chartType) => {
     var width = 800;
     var height = 400;
     var margin = {top: 50, bottom: 40, left: 70, right: 50};
@@ -8,7 +15,9 @@ var makeChart = (dataG, dataType, chartType) => {
     var xScale = d3.scaleTime()
         .domain(xExtent)
         .range([margin.left, width - margin.right]);
-    var yMax = d3.max(dataG, d => d[dataType]);
+    
+    
+    var yMax = d3.max(dataG, d => d[dataTypes[0]]);
     var yScale = d3.scaleLinear()
         .domain([0, yMax])
         .range([height - margin.bottom, margin.top]);
@@ -16,42 +25,41 @@ var makeChart = (dataG, dataType, chartType) => {
         .domain([0, yMax])
         .range([0, height - margin.top - margin.bottom]);
 
+        var svg = d3.select('svg');
+        
     //create the rectangles
-    var svg = d3.select('svg');
-
     if (chartType==='block'){
         svg.selectAll('rect')
             .data(dataG)
             .enter().append('rect')
             .attr('width', 10)
-            .attr('height', d => heightScale(d[dataType]))
+            .attr('height', d => heightScale(d[dataTypes[0]]))
             .attr('x', d => xScale(d.timestamp))
-            .attr('y', d => yScale(d[dataType]))
+            .attr('y', d => yScale(d[dataTypes[0]]))
             .attr('fill', 'blue')
             .attr('stroke', 'white');
     }
 
+    //create lines
     if (chartType==='line'){
-        var lineOne = d3.line()
-        .x(d => xScale(d.timestamp))
-        .y(d => yScale(d[dataType]));
 
-        svg.selectAll('path')
+    // var line = d3.svg.line()
+    //     .x(d => xScale(d.timestamp))
+    //     .y(d => yScale(d[dataTypes[0]]))
+    var line;
+
+    for (i in dataTypes){
+        line = d3.line()
+        .x(d => xScale(d.timestamp))
+        .y(d => yScale(d[dataTypes[i]]));
+    
+        svg.selectAll('line dataset-' + i)
             .data([dataG]).enter().append('path')
-            .attr('d', lineOne)
+            .attr("class", "line dataset-" + i)
+            .attr('d', line)
             .attr('fill', 'none')
             .attr('stroke', 'blue');
-
-        var lineTwo = d3.line()
-        .x(d => xScale(d.timestamp))
-        .y(d => yScale(d[dataType]));
-
-        svg.selectAll('path')
-            .data([dataG]).enter().append('path')
-            .attr('d', lineTwo)
-            .attr('fill', 'none')
-            .attr('stroke', 'blue');
-    }
+    }}
 
     // create x and y axis
     var xAxis = d3.axisBottom()
